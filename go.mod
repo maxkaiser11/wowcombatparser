@@ -1,4 +1,4 @@
-module github.com/maxkaiser11/wowcombatlogger
+module github.com/maxkaiser11/wowcombatparser
 
 go 1.26.0
 

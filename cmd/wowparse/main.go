@@ -13,7 +13,7 @@ import (
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 
-	"github.com/maxkaiser11/wowcombatlogger/internal/combatlog"
+	"github.com/maxkaiser11/wowcombatparser/internal/combatlog"
 )
 
 func main() {
