@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WoW Coach · Results</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="container">
+    <div class="brand">WoW Coach</div>
+    <h1>Fight results</h1>
+    <p class="subtitle">Boss encounters found in your log, players sorted by damage.</p>
+
+    {{range .}}
+    <section class="card">
+        <div class="fight-header">
+            <div>
+                <h2>{{.Name}}</h2>
+                <div class="meta">{{.Duration}}</div>
+            </div>
+            <span class="badge {{.Outcome}}">{{.Outcome}}</span>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th class="rank">#</th>
+                <th>Player</th>
+                <th class="num">Damage</th>
+                <th class="num">DPS</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $i, $p := .PlayerStats}}
+            <tr>
+                <td class="rank">{{add $i 1}}</td>
+                <td>{{$p.Name}}</td>
+                <td class="num">{{$p.Damage}}</td>
+                <td class="num dps">{{printf "%.0f" $p.DPS}}</td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </section>
+    {{else}}
+    <section class="card empty">
+        <p>No boss fights found in this log.</p>
+    </section>
+    {{end}}
+
+    <div class="footer">
+        <a class="button" href="/">Upload another log</a>
+    </div>
+</main>
+</body>
+</html>

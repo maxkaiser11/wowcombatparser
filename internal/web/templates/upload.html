@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WoW Coach · Upload</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="container">
+    <div class="brand">WoW Coach</div>
+    <h1>Upload a combat log</h1>
+    <p class="subtitle">Get a damage and DPS breakdown for every boss fight in your log.</p>
+
+    <form class="card" method="post" action="/upload" enctype="multipart/form-data">
+        <label class="dropzone">
+            <input type="file" name="log" accept=".txt" required id="log-input">
+            <strong>Choose your combat log</strong>
+            <span>WoWCombatLog-*.txt from your World of Warcraft/_retail_/Logs folder</span>
+            <div class="filename" id="filename"></div>
+        </label>
+
+        <div class="actions">
+            <button class="button" type="submit">Analyse log</button>
+        </div>
+
+        <p class="hint">Turn on <code>Advanced Combat Logging</code> in the game's network settings and type <code>/combatlog</code> before your raid or dungeon.</p>
+    </form>
+</main>
+
+<script>
+    const input = document.getElementById("log-input");
+    input.addEventListener("change", () => {
+        document.getElementById("filename").textContent =
+            input.files.length ? input.files[0].name : "";
+    });
+</script>
+</body>
+</html>
