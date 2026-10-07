@@ -30,7 +30,6 @@ func (s *Server) Routes() http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", s.handleHealth)
 	mux.HandleFunc("GET /{$}", s.handleIndex)
-	//mux.HandleFunc("POST /logs", s.handleUploadLog)
 	mux.HandleFunc("POST /upload", s.handleUploadPage)
 
 	static, err := fs.Sub(web.Static, "static")

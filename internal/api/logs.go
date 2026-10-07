@@ -10,16 +10,6 @@ import (
 
 const maxUploadSize = 1 << 30
 
-//func (s *Server) handleUploadLog(w http.ResponseWriter, r *http.Request) {
-//
-//	result, ok := s.parseUpload(w, r)
-//	if !ok {
-//		return
-//	}
-//	fmt.Fprintf(w, "encounters: %d, parsed: %d, failed: %d\n", len(result.Encounters), result.Parsed, result.Failed)
-//
-//}
-
 func (s *Server) parseUpload(w http.ResponseWriter, r *http.Request) (*combatlog.Result, bool) {
 	r.Body = http.MaxBytesReader(w, r.Body, maxUploadSize)
 
