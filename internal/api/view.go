@@ -5,12 +5,14 @@ import (
 	"time"
 
 	"github.com/maxkaiser11/wowcombatparser/internal/combatlog"
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
 )
 
 type PlayerStat struct {
-	Name   string  `json:"name"`
-	Damage int     `json:"damage"`
-	DPS    float64 `json:"dps"`
+	Name   string `json:"name"`
+	Damage int    `json:"damage"`
+	DPS    string `json:"dps"`
 }
 
 type EncounterView struct {
@@ -24,6 +26,8 @@ func toEncounterView(encounter *combatlog.Encounter) EncounterView {
 
 	var playerStats []PlayerStat
 
+	p := message.NewPrinter(language.English)
+
 	fightDuration := encounter.Duration.Seconds()
 
 	for guid, total := range encounter.DamageByPlayer {
@@ -36,7 +40,7 @@ func toEncounterView(encounter *combatlog.Encounter) EncounterView {
 		playerStats = append(playerStats, PlayerStat{
 			Name:   name,
 			Damage: total,
-			DPS:    dps,
+			DPS:    p.Sprintf("%.0f", dps), // this is a string so it can be formatted to 100,000 (with commas)
 		})
 	}
 

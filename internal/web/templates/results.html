@@ -37,7 +37,7 @@
                 <td class="rank">{{add $i 1}}</td>
                 <td>{{$p.Name}}</td>
                 <td class="num">{{$p.Damage}}</td>
-                <td class="num dps">{{printf "%.0f" $p.DPS}}</td>
+                <td class="num dps">{{printf $p.DPS}}</td>
             </tr>
             {{end}}
             </tbody>
